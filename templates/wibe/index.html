@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html>
+
+{% load static %} {% autoescape on %}
+
+<head prefix="og: http://ogp.me/ns#">
+    <!-- start Mixpanel -->
+    <script type="text/javascript">
+    (function(f, b) {
+        if (!b.__SV) {
+            var a, e, i, g;
+            window.mixpanel = b;
+            b._i = [];
+            b.init = function(a, e, d) {
+                function f(b, h) {
+                    var a = h.split(".");
+                    2 == a.length && (b = b[a[0]], h = a[1]);
+                    b[h] = function() {
+                        b.push([h].concat(Array.prototype.slice.call(arguments, 0)))
+                    }
+                }
+                var c = b;
+                "undefined" !== typeof d ? c = b[d] = [] : d = "mixpanel";
+                c.people = c.people || [];
+                c.toString = function(b) {
+                    var a = "mixpanel";
+                    "mixpanel" !== d && (a += "." + d);
+                    b || (a += " (stub)");
+                    return a
+                };
+                c.people.toString = function() {
+                    return c.toString(1) + ".people (stub)"
+                };
+                i = "disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+                for (g = 0; g < i.length; g++) f(c, i[g]);
+                b._i.push([a, e, d])
+            };
+            b.__SV = 1.2;
+            a = f.createElement("script");
+            a.type = "text/javascript";
+            a.async = !0;
+            a.src = "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";
+            e = f.getElementsByTagName("script")[0];
+            e.parentNode.insertBefore(a, e)
+        }
+    })(document, window.mixpanel || []);
+    mixpanel.init("b58ecc35372bb29587676435f0342c9a");
+    </script>
+    <!-- end Mixpanel -->
+    <title>{{ title }}-Wibe, Get Information Deeply</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="keywords" content="{{ title }}, {{ title }} Wibe, {{ title }} Wikipedia,{{ title }} YouTube, {{ title }} LetsWibe,{{ title }} Wiki,{{ title }} wibe,{{ title }} wiki,{{ title }} letswibe,{{ title }} Youtube,{{ title }} wibing,{{ title }} vibe,{{ title }} vibing,{{ title }} yibe,{{ title }} Yibe, {{ title|truncatewords:1|cut:'.' }}, {{ title|truncatewords:1|cut:'.' }} Wibe, {{ title|truncatewords:1|cut:'.' }} Wikipedia,{{ title|truncatewords:1|cut:'.' }} YouTube, {{ title|truncatewords:1|cut:'.' }} LetsWibe,{{ title|truncatewords:1|cut:'.' }} Wiki,{{ title|truncatewords:1|cut:'.' }} wibe,{{ title|truncatewords:1|cut:'.' }} wiki,{{ title|truncatewords:1|cut:'.' }} letswibe,{{ title|truncatewords:1|cut:'.' }} Youtube,{{ title|truncatewords:1|cut:'.' }} wibing,{{ title|truncatewords:1|cut:'.' }} vibe,{{ title|truncatewords:1|cut:'.' }} vibing,{{ title|truncatewords:1|cut:'.' }} yibe,{{ title|truncatewords:1|cut:'.' }} Yibe">
+    <meta name="description" content="{{ meta_info|truncatewords:20|safe}}">
+    <meta property="og:title" content="{{ title }}-Wibe">
+    <meta property="og:image" content="{{ og_meta_img.0 }}/mqdefault.jpg">
+    <meta property="og:image" content="{{ og_meta_img.0 }}/hqdefault.jpg">
+    <meta property="og:image" content="{{ og_meta_img.1 }}/mqdefault.jpg">
+    <meta property="og:image" content="{{ og_meta_img.1 }}/hqdefault.jpg">
+    <meta property="og:image" content="{{ og_meta_img.2 }}/mqdefault.jpg">
+    <meta property="og:image" content="{{ og_meta_img.2 }}/hqdefault.jpg">
+
+    <link rel="author" href="https://plus.google.com/+Wikipedia" />
+    <link rel="author" href="https://plus.google.com/+youtube" />
+    <link rel="publisher" href="https://plus.google.com/+Letswibeall" />
+    <link rel="shortcut icon" href={% static "images/favicon.ico" %} />
+
+    <!-- 1. Load webcomponents.js for polyfill support. -->
+    <script src={% static "bower_components/webcomponentsjs/webcomponents.js" %}></script>
+    <!-- 2. Load the component using an HTML Import -->
+    <link rel="import" href={% static "bower_components/font-roboto/roboto.html" %}>
+    <link rel="import" href={% static "bower_components/core-header-panel/core-header-panel.html" %}>
+    <link rel="import" href={% static "bower_components/core-scroll-header-panel/core-scroll-header-panel.html" %}>
+    <link rel="import" href={% static "bower_components/core-toolbar/core-toolbar.html" %}>
+    <link rel="import" href={% static "bower_components/core-image/core-image.html" %}>
+    <link rel="import" href={% static "bower_components/core-icon-button/core-icon-button.html" %}>
+    <link rel="import" href={% static "bower_components/core-icon/core-icon.html" %}>
+    <link rel="import" href={% static "bower_components/core-icons/social-icons.html" %}>
+    <link rel="import" href={% static "bower_components/core-icons/image-icons.html" %}>
+    <link rel="import" href={% static "bower_components/core-field/core-field.html" %}>
+    <link rel="import" href={% static "bower_components/paper-button/paper-button.html" %}>
+    <link rel="import" href={% static "bower_components/paper-icon-button/paper-icon-button.html" %}>
+    <link rel="import" href={% static "bower_components/paper-fab/paper-fab.html" %}>
+    <link rel="import" href={% static "bower_components/core-drawer-panel/core-drawer-panel.html" %}>
+    <link rel="import" href={% static "bower_components/core-animation/core-animation.html" %}>
+    <link rel="import" href={% static "bower_components/core-transition/core-transition-css.html" %}>
+    <link rel="import" href={% static "bower_components/core-transition/core-transition.html" %}>
+    <link rel="import" href={% static "bower_components/core-tooltip/core-tooltip.html" %}>
+    <link rel="import" href={% static "bower_components/paper-dialog/paper-dialog.html" %}>
+    <link rel="import" href={% static "bower_components/paper-toast/paper-toast.html" %}>
+    <link rel="import" href={% static "bower_components/core-media-query/core-media-query.html" %}>
+    <link rel="import" href={% static "bower_components/paper-spinner/paper-spinner.html" %}>
+
+    <!-- <link rel="stylesheet" type="text/css" href={% static "css/tipuedrop.css" %}> -->
+    <link rel="stylesheet" type="text/css" href={% static "css/wibe.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "css/wibe-mobile.css" %} media="screen and (max-width:640px)">
+</head>
+
+<body unresolved>
+    <core-drawer-panel id='trending-panel' responsiveWidth='9999px' rightDrawer>
+        <core-header-panel drawer id='nav-bar'>
+            <core-toolbar id='trending-bar'>
+                <div id='trending-title'>Trending Articles</div>
+            </core-toolbar>
+            <div id='trending-list' vertical layout center justified>
+                <span itemscope itemtype="http://schema.org/ImageObject" id='tr-box-schema-0' class='tr-box-schema'>
+                    <a href='/wibe/' itemprop="url" class='tr-box'>
+                        <core-image class='tr-box' vertical layout center sizing="cover">
+                            <div class='tr-img' style='background-image: url("/static/images/");' itemprop="image"></div>
+                            <div class='tr-text' vertical layout justified>
+                                <div class='tr-title' title='' itemprop="name"> </div>
+                                <!-- <div class='tr-views'> 50,000 views </div> -->
+                            </div>
+                        </core-image>
+                    </a>
+                </span>
+                <div class='tr-sep'></div>
+                <span itemscope itemtype="http://schema.org/ImageObject" id='tr-box-schema-1' class='tr-box-schema'>
+                    <a href='/wibe/' itemprop="url" class='tr-box'>
+                        <core-image class='tr-box' vertical layout center sizing="cover">
+                            <div class='tr-img' style='background-image: url("/static/images/");' itemprop="image"></div>
+                            <div class='tr-text' vertical layout justified>
+                                <div class='tr-title' title='{{link.0}}' itemprop="name"> </div>
+                                <!-- <div class='tr-views'> 50,000 views </div> -->
+                            </div>
+                        </core-image>
+                    </a>
+                </span>
+                <div class='tr-sep'></div>
+                <span itemscope itemtype="http://schema.org/ImageObject" id='tr-box-schema-2' class='tr-box-schema'>
+                    <a href='/wibe/' itemprop="url" class='tr-box'>
+                        <core-image class='tr-box' vertical layout center sizing="cover">
+                            <div class='tr-img' style='background-image: url("/static/images/");' itemprop="image"></div>
+                            <div class='tr-text' vertical layout justified>
+                                <div class='tr-title' title='{{link.0}}' itemprop="name"> </div>
+                                <!-- <div class='tr-views'> 50,000 views </div> -->
+                            </div>
+                        </core-image>
+                    </a>
+                </span>
+                <div class='tr-sep'></div>
+                <span itemscope itemtype="http://schema.org/ImageObject" id='tr-box-schema-3' class='tr-box-schema'>
+                    <a href='/wibe/' itemprop="url" class='tr-box'>
+                        <core-image class='tr-box' vertical layout center sizing="cover">
+                            <div class='tr-img' style='background-image: url("/static/images/");' itemprop="image"></div>
+                            <div class='tr-text' vertical layout justified>
+                                <div class='tr-title' title='{{link.0}}' itemprop="name"> </div>
+                                <!-- <div class='tr-views'> 50,000 views </div> -->
+                            </div>
+                        </core-image>
+                    </a>
+                </span>
+                <div class='tr-sep'></div>
+                <span itemscope itemtype="http://schema.org/ImageObject" id='tr-box-schema-4' class='tr-box-schema'>
+                    <a href='/wibe/' itemprop="url" class='tr-box'>
+                        <core-image class='tr-box' vertical layout center sizing="cover">
+                            <div class='tr-img' style='background-image: url("/static/images/");' itemprop="image"></div>
+                            <div class='tr-text' vertical layout justified>
+                                <div class='tr-title' title='{{link.0}}' itemprop="name"> </div>
+                                <!-- <div class='tr-views'> 50,000 views </div> -->
+                            </div>
+                        </core-image>
+                    </a>
+                </span>
+                <div class='tr-sep'></div>
+                <span itemscope itemtype="http://schema.org/ImageObject" id='tr-box-schema-5' class='tr-box-schema'>
+                    <a href='/wibe/' itemprop="url" class='tr-box'>
+                        <core-image class='tr-box' vertical layout center sizing="cover">
+                            <div class='tr-img' style='background-image: url("/static/images/");' itemprop="image"></div>
+                            <div class='tr-text' vertical layout justified>
+                                <div class='tr-title' title='{{link.0}}' itemprop="name"> </div>
+                                <!-- <div class='tr-views'> 50,000 views </div> -->
+                            </div>
+                        </core-image>
+                    </a>
+                </span>
+                <div class='tr-sep'></div>
+                <span itemscope itemtype="http://schema.org/ImageObject" id='tr-box-schema-6' class='tr-box-schema'>
+                    <a href='/wibe/' itemprop="url" class='tr-box'>
+                        <core-image class='tr-box' vertical layout center sizing="cover">
+                            <div class='tr-img' style='background-image: url("/static/images/");' itemprop="image"></div>
+                            <div class='tr-text' vertical layout justified>
+                                <div class='tr-title' title='{{link.0}}' itemprop="name"> </div>
+                                <!-- <div class='tr-views'> 50,000 views </div> -->
+                            </div>
+                        </core-image>
+                    </a>
+                </span>
+                <div class='tr-sep'></div>
+                <span itemscope itemtype="http://schema.org/ImageObject" id='tr-box-schema-7' class='tr-box-schema'>
+                    <a href='/wibe/' itemprop="url" class='tr-box'>
+                        <core-image class='tr-box' vertical layout center sizing="cover">
+                            <div class='tr-img' style='background-image: url("/static/images/");' itemprop="image"></div>
+                            <div class='tr-text' vertical layout justified>
+                                <div class='tr-title' title='{{link.0}}' itemprop="name"> </div>
+                                <!-- <div class='tr-views'> 50,000 views </div> -->
+                            </div>
+                        </core-image>
+                    </a>
+                </span>
+                <div class='tr-sep'></div>
+                <span itemscope itemtype="http://schema.org/ImageObject" id='tr-box-schema-8' class='tr-box-schema'>
+                    <a href='/wibe/' itemprop="url" class='tr-box'>
+                        <core-image class='tr-box' vertical layout center sizing="cover">
+                            <div class='tr-img' style='background-image: url("/static/images/");' itemprop="image"></div>
+                            <div class='tr-text' vertical layout justified>
+                                <div class='tr-title' title='{{link.0}}' itemprop="name"> </div>
+                                <!-- <div class='tr-views'> 50,000 views </div> -->
+                            </div>
+                        </core-image>
+                    </a>
+                </span>
+                <div class='tr-sep'></div>
+                <span itemscope itemtype="http://schema.org/ImageObject" id='tr-box-schema-9' class='tr-box-schema'>
+                    <a href='/wibe/' itemprop="url" class='tr-box'>
+                        <core-image class='tr-box' vertical layout center sizing="cover">
+                            <div class='tr-img' style='background-image: url("/static/images/");' itemprop="image"></div>
+                            <div class='tr-text' vertical layout justified>
+                                <div class='tr-title' title='{{link.0}}' itemprop="name"> </div>
+                                <!-- <div class='tr-views'> 50,000 views </div> -->
+                            </div>
+                        </core-image>
+                    </a>
+                </span>
+            </div>
+        </core-header-panel>
+        <div main id='trending-main'></div>
+    </core-drawer-panel>
+
+    <core-drawer-panel id='panel' responsiveWidth='9999px'>
+        <core-header-panel drawer id='nav-bar'>
+            <core-toolbar id='nav-toolbar'>
+                <div id='nav-title'>Navigate Page</div>
+            </core-toolbar>
+            <div id='head-list' vertical layout center justified itemscope itemtype="http://schema.org/Thing/Navigation">
+                {% for head in headings %}
+                <a href='#{{ head.0.split|join:"_" }}' id='nav-head{{ head.1 }}' class='nav-head' itemprop="url">
+                    <div itemprop="name"> {{ head.0 }} </div>
+                </a>
+                <div class='nav-sep'></div>
+                {% endfor %}
+                <!--                 <paper-dialog id='fake-box'>
+                </paper-dialog>
+ -->
+            </div>
+        </core-header-panel>
+        <div main id='main-content-box'>
+            <core-scroll-header-panel id="page-header" shadow>
+                <core-toolbar id='page-header-bar'>
+                    <core-tooltip label="Navigate Page" position="right">
+                        <paper-icon-button icon="menu" id='menu'></paper-icon-button>
+                    </core-tooltip>
+                    <a href='/' id='home-link'>
+                        <div flex>Wibe</div>
+                    </a>
+                    <div id='search-panel'>
+                        <core-field id='search-box' relative>
+                            <!-- <input id='inp-box' placeholder="What do you want to know?" flex> -->
+                            <input type="text" id="tipue_drop_input" placeholder="What do you want to know?" autocomplete="on">
+                            <div id="tipue_drop_content"></div>
+                            <core-icon icon="search" id='search-icon' onclick="srchBox()" right></core-icon>
+                        </core-field>
+                    </div>
+                    <core-field id='user-subs'>
+                        <!--                             <core-icon icon="search" id='search-icon'></core-icon>
+ -->
+                        <input id='inp-email-id' placeholder="Enter Email for Updates" flex>
+                        <paper-button id='subscribe-but' raised onclick="document.querySelector('#subscribed-msg').show()">
+                            <div>Subscribe</div>
+                        </paper-button>
+                    </core-field>
+                    <paper-toast id='subscribed-msg' text="You have been subscribed to Wibe!"></paper-toast>
+                </core-toolbar>
+                <div id='main-box' horizontal layout justified>
+                    <div layout vertical>
+                        <div id='top-vid' class='vid-box'>
+                            <div id='sum-video-0' itemscope itemtype="http://schema.org/VideoObject" class='top-vid-box video-box' title='' horizontal layout center relative>
+                                <core-image id='sum-video-img' itemprop="thumbnail" class='top-vid-img sum-video-img' src="" sizing="cover">
+                                    <div class="vid-desc" itemprop="description">
+                                    </div>
+                                </core-image>
+                                <div id="mash"></div>
+                                <paper-fab class='sum-play-but' src={% static "images/play.png" %} style="visibility:hidden"></paper-fab>
+                                <paper-spinner id='top-loader' active style='visibility: visible'></paper-spinner>
+                            </div>
+                            <div id='sum-video-1' itemscope itemtype="http://schema.org/VideoObject" class='top-vid-box video-box' style="display: none" title='' horizontal layout center relative>
+                                <core-image id='sum-video-img' itemprop="thumbnail" class='top-vid-img sum-video-img' src="" sizing="cover">
+                                    <div class="vid-desc" itemprop="description">
+
+                                    </div>
+                                </core-image>
+                                <div id="mash"></div>
+                                <paper-fab class='sum-play-but' src={% static "images/play.png" %}></paper-fab>
+                            </div>
+                            <div id='sum-video-2' itemscope itemtype="http://schema.org/VideoObject" class='top-vid-box video-box' style="display: none" title='' horizontal layout center relative>
+                                <core-image id='sum-video-img' itemprop="thumbnail" class='top-vid-img sum-video-img' src="" sizing="cover">
+                                    <div class="vid-desc" itemprop="description">
+
+                                    </div>
+                                </core-image>
+                                <div id="mash"></div>
+                                <paper-fab class='sum-play-but' src={% static "images/play.png" %}></paper-fab>
+                            </div>
+                            <div id="slider-pos" style="display: none">0</div>
+                            <div id='trending-but-box'>
+                                <div id='trending-but' onclick="get_trending_topics()">
+                                    <core-tooltip label="Trending Topics of Web" position="left">
+                                        <paper-fab id='trending-icon' icon="trending-up" shadow></paper-fab>
+                                    </core-tooltip>
+                                </div>
+                            </div>
+                            <div id='summary-left' onclick="slider('#summary-left')" style='display: none'>
+                                <core-icon class='sum-prev-but' icon='image:navigate-before'></core-icon>
+                            </div>
+                            <div id='summary-right' onclick="slider('#summary-right')">
+                                <core-icon class='sum-next-but' icon='image:navigate-next'></core-icon>
+                            </div>
+                        </div>
+
+                        <div id='content-box'>
+                            <core-animation id="content-box-expand" duration="200" fill='forwards'>
+                                <core-animation-keyframe>
+                                    <core-animation-prop name="width" value="82%"></core-animation-prop>
+                                </core-animation-keyframe>
+                                <core-animation-keyframe>
+                                    <core-animation-prop name="width" value="86%"></core-animation-prop>
+                                </core-animation-keyframe>
+                                <core-animation-keyframe>
+                                    <core-animation-prop name="width" value="90%"></core-animation-prop>
+                                </core-animation-keyframe>
+                                <core-animation-keyframe>
+                                    <core-animation-prop name="width" value="94%"></core-animation-prop>
+                                </core-animation-keyframe>
+                                <core-animation-keyframe>
+                                    <core-animation-prop name="width" value="98%"></core-animation-prop>
+                                </core-animation-keyframe>
+                                <core-animation-keyframe>
+                                    <core-animation-prop name="width" value="100%"></core-animation-prop>
+                                </core-animation-keyframe>
+                            </core-animation>
+
+                            <div id='top-but-box' horizontal layout justified>
+                                <div id='page-head-box' horizontal layout center wrap relative>
+                                    <div id='title-box' itemscope itemtype="http://schema.org/CreativeWork" vertical layout center-justified>
+                                        <h1 id='page-head' itemprop="headline"> {{ title }} </h1>
+                                        <div id='wiki-tm'>
+                                            From <span itemprop="copyrightHolder"> Wikipedia </span>, the free encyclopedia
+                                        </div>
+                                        <div id='wiki-tm-mob'>
+                                            From <span itemprop="copyrightHolder"> Wikipedia </span>
+                                            <div id='exp-mob-share-box' horizontal layout justified style="display: none">
+                                                <core-icon-button class='mob-share-fb' icon="social:post-facebook" onclick="sharePage('fb');"></core-icon-button>
+                                                <core-icon-button class='mob-share-twitter' icon="social:post-twitter" onclick="sharePage('twitter');"></core-icon-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id='share-box' center>
+                                        <core-tooltip label="Share {{title}} Wibe Page" position="top">
+                                            <paper-fab id='share' mini icon="social:share"></paper-fab>
+                                        </core-tooltip>
+                                        <paper-fab id='share-fb' class='share-page' mini icon="social:post-facebook" onclick="sharePage('fb');"></paper-fab>
+                                        <paper-fab id='share-twitter' class='share-page' mini icon="social:post-twitter" onclick="sharePage('twitter');"></paper-fab>
+                                        <paper-fab id='share-gplus' class='share-page' mini icon="social:post-gplus" onclick="sharePage('gplus');"></paper-fab>
+                                    </div>
+                                    <div id='mob-share-box' horizontal layout justified>
+                                        <core-icon-button class='mob-share-fb' icon="social:post-facebook" onclick="sharePage('fb');"></core-icon-button>
+                                        <core-icon-button class='mob-share-twitter' icon="social:post-twitter" onclick="sharePage('twitter');"></core-icon-button>
+                                    </div>
+                                    <core-animation id="rotate-share" duration="200">
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="transform" value="rotate(20deg)"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="transform" value="rotate(40deg)"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="transform" value="rotate(60deg)"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="transform" value="rotate(80deg)"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="transform" value="rotate(100deg)"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="transform" value="rotate(120deg)"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="transform" value="rotate(140deg)"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="transform" value="rotate(160deg)"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="transform" value="rotate(180deg)"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                    </core-animation>
+                                    <core-animation id="share-fb-fadein" duration="200">
+                                        <!--                             <core-animation-keyframe>
+                                <core-animation-prop name="visibility" value="hidden"></core-animation-prop>
+                            </core-animation-keyframe>
+                            <core-animation-keyframe>
+                                <core-animation-prop name="visibility" value="visible"></core-animation-prop>
+                            </core-animation-keyframe>
+ -->
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="opacity" value="0"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="opacity" value="0.3"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="opacity" value="0.6"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="opacity" value="0.9"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="opacity" value="1"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                    </core-animation>
+
+                                    <core-animation id="share-twitter-fadein" duration="200">
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="opacity" value="0"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="opacity" value="0.2"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="opacity" value="0.4"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="opacity" value="0.6"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="opacity" value="1"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                    </core-animation>
+
+                                    <core-animation id="share-gplus-fadein" duration="200">
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="opacity" value="0"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="opacity" value="0.1"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="opacity" value="0.2"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="opacity" value="0.3"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                        <core-animation-keyframe>
+                                            <core-animation-prop name="opacity" value="1"></core-animation-prop>
+                                        </core-animation-keyframe>
+                                    </core-animation>
+
+                                </div>
+                            </div>
+
+                            <div id='top-box' horizontal layout end justified relative>
+                                <div id='summary' itemscope itemtype="http://schema.org/CreativeWork" horizontal layout justified relative>
+                                    <h3 id='summary-para' itemprop="description">{{ shrt_title_content|safe }}
+                                    <a id='sum-read-more' onclick='document.querySelector("#more-box").toggle()'> ... Read More. </a>
+                                <!-- <br>
+                                <core-tooltip label="Read more about Narendra Modi" position="right">
+                                    <paper-fab id='sum-more-but' mini icon="more-horiz" onclick='document.querySelector("#more-box").toggle()'></paper-fab>
+                                </core-tooltip>
+                                -->
+                                        <paper-dialog id='more-box' class='more-data' heading='Description' transition='core-transition-center' backdrop>
+                                            <p itemprop="text">
+                                                {{ title_content|safe }}
+                                            </p>
+                                            <paper-button class='close-but' dismissive raised >
+                                                Close
+                                            </paper-button>
+                                        </paper-dialog>
+                                    </h3>
+                                </div>
+                            </div>
+                            <!-- <paper-fab id='move-top' mini icon="bookmark-outline"></paper-fab> -->
+                            {% for head in heads %}
+                            <!-- <template is="auto-binding"> -->
+                            <!-- <core-media-query query="max-width: 640px" queryMatches="{{phoneScreen}}"></core-media-query> -->
+                            <div id='{{ head.0.0.split|join:"_" }}' class="heading-bck-hred">
+                                <div class='head-box' layout horizontal justified relative wrap>
+                                    {% if not forloop.counter|divisibleby:2 %}
+                                    <div class='head-summary' itemscope itemtype="http://schema.org/CreativeWork" auto-vertical layout justified>
+                                        <h2 class='heading-title' itemprop="name"> {{ head.0.0 }}
+                                            </h2>
+                                        <h3 class='heading-para' itemprop="description"> {{ head.0.3|safe }}
+                                            <a id='head-read-more' onclick='document.querySelector("#more-head-box-{{ head.0.2 }}").toggle()'> ... Read More.</a>
+                                                <!-- <br>
+                                                <core-tooltip label="Read more about {{ head.0.0 }}" position="right">
+                                                    <paper-fab class='head-more-but' mini icon="more-horiz" onclick='document.querySelector("#more-head-box-{{ head.0.2 }}").toggle()'></paper-fab>
+                                                </core-tooltip> -->
+                                                <paper-dialog id='more-head-box-{{ head.0.2 }}' heading='Description' transition='core-transition-center' backdrop>
+                                                    <p itemprop="text">
+                                                        {{ head.0.1|safe }}
+                                                    </p>
+                                                    <paper-button class='close-but' affirmative raised>
+                                                        Close
+                                                    </paper-button>
+                                                </paper-dialog>
+                                            </h3>
+                                    </div>
+                                    <div id='head-video-box' class='head-vid-box vid-box' auto-vertical layout center relative>
+                                        <div id="head-{{ head.0.2 }}-video-0" class='video-box' horizontal layout center relative>
+
+                                            <core-image class='head-video-img video-img' src="" itemprop="thumbnail" sizing="cover">
+                                                <div horizontal layout>
+                                                    <div id='white-title' class='video-title' title=""> ...
+                                                    </div>
+                                                    <core-icon class='vid-desc' mini icon="more-vert" onclick='document.querySelector("#vid-desc-box-{{ head.0.2 }}-video-0").toggle();vid-desc-box-{{ head.0.2 }}-video-0'></core-icon>
+                                                </div>
+                                                <paper-dialog id="vid-desc-box-{{ head.0.2 }}-video-0" class='vid-desc-box' heading='Video Description' transition='core-transition-center' backdrop>
+                                                    <p>
+                                                        ...
+                                                    </p>
+                                                    <paper-button class='close-but' affirmative raised>
+                                                        Close
+                                                    </paper-button>
+                                                </paper-dialog>
+                                            </core-image>
+                                            <paper-fab class='play-but' src={% static "images/play.png" %} style="visibility:hidden"></paper-fab>
+                                            <paper-spinner class='vid-loader' active style='visibility: visible'></paper-spinner>
+
+
+                                        </div>
+                                        <div id="head-{{ head.0.2 }}-video-1" class='video-box' style="display: none" horizontal layout center relative>
+                                            <core-image class='head-video-img video-img' src="" sizing="cover">
+                                                <div horizontal layout>
+                                                    <div id='white-title' class='video-title' title=""> ...
+                                                    </div>
+                                                    <core-icon class='vid-desc' mini icon="more-vert" onclick='document.querySelector("#vid-desc-box-{{ head.0.2 }}-video-1").toggle();vid-desc-box-{{ head.0.2 }}-video-1'></core-icon>
+                                                </div>
+                                                <paper-dialog id="vid-desc-box-{{ head.0.2 }}-video-1" class='vid-desc-box' heading='Video Description' transition='core-transition-center' backdrop>
+                                                    <p>
+                                                        ...
+                                                    </p>
+                                                    <paper-button class='close-but' affirmative raised>
+                                                        Close
+                                                    </paper-button>
+                                                </paper-dialog>
+                                            </core-image>
+                                            <paper-fab class='play-but' src={% static "images/play.png" %}></paper-fab>
+                                            <paper-spinner class='vid-loader' style='visibility: hidden'></paper-spinner>
+                                        </div>
+                                        <div id="head-{{ head.0.2 }}-video-2" class='video-box' style="display: none" horizontal layout center relative>
+                                            <core-image class='head-video-img video-img' src="" sizing="cover">
+                                                <div horizontal layout>
+                                                    <div id='white-title' class='video-title' title=""> ...
+                                                    </div>
+                                                    <core-icon class='vid-desc' mini icon="more-vert" onclick='document.querySelector("#vid-desc-box-{{ head.0.2 }}-video-2").toggle();vid-desc-box-{{ head.0.2 }}-video-2'></core-icon>
+                                                </div>
+                                                <paper-dialog id="vid-desc-box-{{ head.0.2 }}-video-2" class='vid-desc-box' heading='Video Description' transition='core-transition-center' backdrop>
+                                                    <p>
+                                                        ...
+                                                    </p>
+                                                    <paper-button class='close-but' affirmative raised>
+                                                        Close
+                                                    </paper-button>
+                                                </paper-dialog>
+                                            </core-image>
+                                            <paper-fab class='play-but' src={% static "images/play.png" %}></paper-fab>
+                                            <paper-spinner class='vid-loader' style='visibility: hidden'></paper-spinner>
+                                        </div>
+                                        <div id="slider-pos" style="display: none">0</div>
+
+                                        <div id='head-{{head.0.2}}-left' class='head-nav-left-but' onclick="slider('#head-{{head.0.2}}-left')" style='display: none'>
+                                            <core-icon class='head-prev-but' icon='image:navigate-before'></core-icon>
+                                        </div>
+                                        <div id='head-{{head.0.2}}-right' onclick="slider('#head-{{head.0.2}}-right')" class='head-nav-right-but'>
+                                            <core-icon class='head-next-but' icon='image:navigate-next'></core-icon>
+                                        </div>
+
+                                    </div>
+                                    {% else %}
+                                    <div id='head-video-box' class='head-vid-box vid-box' auto-vertical layout center relative>
+                                        <div id="head-{{ head.0.2 }}-video-0" class='video-box' horizontal layout center relative>
+
+                                            <core-image class='head-video-img video-img' src="" itemprop="thumbnail" sizing="cover">
+                                                <div horizontal layout>
+                                                    <div id='white-title' class='video-title' title=""> ...
+                                                    </div>
+                                                    <core-icon class='vid-desc' mini icon="more-vert" onclick='document.querySelector("#vid-desc-box-{{ head.0.2 }}-video-0").toggle();vid-desc-box-{{ head.0.2 }}-video-0'></core-icon>
+                                                </div>
+                                                <paper-dialog id="vid-desc-box-{{ head.0.2 }}-video-0" class='vid-desc-box' heading='Video Description' transition='core-transition-center' backdrop>
+                                                    <p>
+                                                        ...
+                                                    </p>
+                                                    <paper-button class='close-but' affirmative raised>
+                                                        Close
+                                                    </paper-button>
+                                                </paper-dialog>
+                                            </core-image>
+                                            <paper-fab class='play-but' src={% static "images/play.png" %} style="visibility:hidden"></paper-fab>
+                                            <paper-spinner class='vid-loader' active style='visibility: visible'></paper-spinner>
+
+
+                                        </div>
+                                        <div id="head-{{ head.0.2 }}-video-1" class='video-box' style="display: none" horizontal layout center relative>
+                                            <core-image class='head-video-img video-img' src="" sizing="cover">
+                                                <div horizontal layout>
+                                                    <div id='white-title' class='video-title' title=""> ...
+                                                    </div>
+                                                    <core-icon class='vid-desc' mini icon="more-vert" onclick='document.querySelector("#vid-desc-box-{{ head.0.2 }}-video-1").toggle();vid-desc-box-{{ head.0.2 }}-video-1'></core-icon>
+                                                </div>
+                                                <paper-dialog id="vid-desc-box-{{ head.0.2 }}-video-1" class='vid-desc-box' heading='Video Description' transition='core-transition-center' backdrop>
+                                                    <p>
+                                                        ...
+                                                    </p>
+                                                    <paper-button class='close-but' affirmative raised>
+                                                        Close
+                                                    </paper-button>
+                                                </paper-dialog>
+                                            </core-image>
+                                            <paper-fab class='play-but' src={% static "images/play.png" %}></paper-fab>
+                                            <paper-spinner class='vid-loader' style='visibility: hidden'></paper-spinner>
+                                        </div>
+                                        <div id="head-{{ head.0.2 }}-video-2" class='video-box' style="display: none" horizontal layout center relative>
+                                            <core-image class='head-video-img video-img' src="" sizing="cover">
+                                                <div horizontal layout>
+                                                    <div id='white-title' class='video-title' title=""> ...
+                                                    </div>
+                                                    <core-icon class='vid-desc' mini icon="more-vert" onclick='document.querySelector("#vid-desc-box-{{ head.0.2 }}-video-2").toggle();vid-desc-box-{{ head.0.2 }}-video-2'></core-icon>
+                                                </div>
+                                                <paper-dialog id="vid-desc-box-{{ head.0.2 }}-video-2" class='vid-desc-box' heading='Video Description' transition='core-transition-center' backdrop>
+                                                    <p>
+                                                        ...
+                                                    </p>
+                                                    <paper-button class='close-but' affirmative raised>
+                                                        Close
+                                                    </paper-button>
+                                                </paper-dialog>
+                                            </core-image>
+                                            <paper-fab class='play-but' src={% static "images/play.png" %}></paper-fab>
+                                            <paper-spinner class='vid-loader' style='visibility: hidden'></paper-spinner>
+                                        </div>
+                                        <div id="slider-pos" style="display: none">0</div>
+
+                                        <div id='head-{{head.0.2}}-left' class='head-nav-left-but' onclick="slider('#head-{{head.0.2}}-left')" style='display: none'>
+                                            <core-icon class='head-prev-but' icon='image:navigate-before'></core-icon>
+                                        </div>
+                                        <div id='head-{{head.0.2}}-right' onclick="slider('#head-{{head.0.2}}-right')" class='head-nav-right-but'>
+                                            <core-icon class='head-next-but' icon='image:navigate-next'></core-icon>
+                                        </div>
+
+                                    </div>
+                                    <div class='head-summary' itemscope itemtype="http://schema.org/CreativeWork" auto-vertical layout justified>
+                                        <h2 class='heading-title' itemprop="name"> {{ head.0.0 }}
+                                            </h2>
+                                        <h3 class='heading-para' itemprop="description"> {{ head.0.3|safe }}
+                                            <a id='head-read-more' onclick='document.querySelector("#more-head-box-{{ head.0.2 }}").toggle()'> ... Read More.</a>
+                                                <!-- <br>
+                                                <core-tooltip label="Read more about {{ head.0.0 }}" position="right">
+                                                    <paper-fab class='head-more-but' mini icon="more-horiz" onclick='document.querySelector("#more-head-box-{{ head.0.2 }}").toggle()'></paper-fab>
+                                                </core-tooltip> -->
+                                                <paper-dialog id='more-head-box-{{ head.0.2 }}' heading='Description' transition='core-transition-center' backdrop>
+                                                    <p itemprop="text">
+                                                        {{ head.0.1|safe }}
+                                                    </p>
+                                                    <paper-button class='close-but' affirmative raised>
+                                                        Close
+                                                    </paper-button>
+                                                </paper-dialog>
+                                            </h3>
+                                    </div>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+
+                            <!-- </template> -->
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div id="wibe-footer" horizontal layout center justified>
+
+                    <div id='less-imp' horizontal layout justified>
+                        <div id='copyright'> &copy; 2014 letswibe.com</div>
+                        <div id='tou'>Terms of Use</div>
+                        <div id='privacy'>Privacy Policy</div>
+                    </div>
+
+                    <div id='imp' horizontal layout justified>
+                        <div id='aboutus' onclick='document.querySelector("#about-us-box").toggle()'>About Us</div>
+                        <paper-dialog id='about-us-box' class='footer-boxes' itemscope itemtype="http://schema.org/CreativeWork" heading='Who are we?' transition='core-transition-center' backdrop>
+                            <h3 itemprop="text">
+                                We are a team of full newbies and emotional fools. We were always focused to solve our problems during college which ignited the work on <span itemprop="author">Wibe</span>. <span itemprop="author">Wibe</span> members are fully inexperienced and don't have great background in good companies but they have 1 thing which is found in very few ones that is the 'feel' in their work and idea. It keep every Wiber to work on their lovely Wibe whole day without food and sleep too.
+                                <br>
+                                <br> <span itemprop="editor">Wibers</span> are but also great emotional fools as they work by heart and goes with their gut feelings. They also waste their most time in discussing GF's issue :D.
+                                <br>
+                                <br> <span itemprop="author">Wibe</span> is currently the part of <span itemprop="award">TLabs</span>.
+                            </h3>
+                        </paper-dialog>
+                        <div id='contactus' class='footer-boxes' onclick='document.querySelector("#contact-us-box").toggle()'>Contact Us</div>
+                        <paper-dialog id='contact-us-box' heading='How to Reach Us?' transition='core-transition-center' backdrop>
+                            <div itemscope itemtype="http://schema.org/PostalAddress">
+                                <h3>Office: </h3> <span itemprop="streetAddress">T-Labs, FC-6, Times of India Building, First floor</span>, <span itemprop="addressLocality">Film city</span>, <span itemprop="addressRegion">Noida Sector 16A </span>
+                                <br>
+                                <br>
+                                <h3>Email: </h3> <span itemprop="email">contact@letswibe.com</span>
+                                <h3>Ph. No.: </h3> <span itemprop="telephone">+91 8447136882</span>
+                            </div>
+                        </paper-dialog>
+
+                        <!-- <a href='/blog/'>
+    <div id='blog'>Blog</div>
+</a>
+ -->
+                        <div id='whywibe' class='footer-boxes' onclick='document.querySelector("#why-wibe-box").toggle()'>Why Wibe</div>
+                        <paper-dialog id='why-wibe-box' itemscope itemtype="http://schema.org/CreativeWork" heading='Why Wibers do what they are doing?' transition='core-transition-center' backdrop>
+                            <h3 itemprop="text">
+                                <span itemprop="editor">Wibers</span> always believe in just one thing and that is "Just Do What You Love To DO". We all work on whatever thing we enjoy working on, which makes us super happy while we work.
+                                <br>
+                                <br> <span itemprop="editor">Wibers</span> left behind everything (Good Job Offers, Easy Life, ...) for living this awesome life of happiness by doing what they enjoy doing. <span itemprop="editor">Wibers</span> are seriously motivated by quote “Dreams are not those which comes while we are sleeping, but dreams are those which don't let you sleep", which keeps them awake whole night to make their dream come into reality.
+                                <br>
+                                <br> <span itemprop="editor">Wibers</span> always use to have a problem that they were unable to gain information by simply searching anything on google and have to waste a lot of time on reading top 5-6 links that come from Google. So they thought to invent a place where users can get the best information they are required to know about everything they want to know about, be it any place, person, movies, etc.
+                            </h3>
+                        </paper-dialog>
+                        <!-- <a href='/follow/'>
+    <div id='share-page'>Share Page</div>
+</a>
+ -->
+                    </div>
+                </div>
+                </core-header-panel>
+            </core-scroll-header-panel>
+        </div>
+    </core-drawer-panel>
+    {{ ready|safe }}
+
+    <script src={% static "js/jquery.min.js" %}></script>
+    <script src={% static "js/YTresp.js" %}></script>
+    <script src={% static "js/main_page.js" %}></script>
+    <script src={% static "js/wibe.js" %}></script>
+    <!--<script src={% static "js/tipuedrop.js" %}></script>-->
+    <!--<script src={% static "js/YouTubePlayerAPI.js" %} async></script>-->
+    <!--<script src={% static "js/VideoBox.js" %}></script>-->
+
+</body>
+{% endautoescape %}
+
+</html>

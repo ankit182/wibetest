@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+    <!-- start Mixpanel -->
+    <script type="text/javascript">
+    (function(f, b) {
+        if (!b.__SV) {
+            var a, e, i, g;
+            window.mixpanel = b;
+            b._i = [];
+            b.init = function(a, e, d) {
+                function f(b, h) {
+                    var a = h.split(".");
+                    2 == a.length && (b = b[a[0]], h = a[1]);
+                    b[h] = function() {
+                        b.push([h].concat(Array.prototype.slice.call(arguments, 0)))
+                    }
+                }
+                var c = b;
+                "undefined" !== typeof d ? c = b[d] = [] : d = "mixpanel";
+                c.people = c.people || [];
+                c.toString = function(b) {
+                    var a = "mixpanel";
+                    "mixpanel" !== d && (a += "." + d);
+                    b || (a += " (stub)");
+                    return a
+                };
+                c.people.toString = function() {
+                    return c.toString(1) + ".people (stub)"
+                };
+                i = "disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+                for (g = 0; g < i.length; g++) f(c, i[g]);
+                b._i.push([a, e, d])
+            };
+            b.__SV = 1.2;
+            a = f.createElement("script");
+            a.type = "text/javascript";
+            a.async = !0;
+            a.src = "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";
+            e = f.getElementsByTagName("script")[0];
+            e.parentNode.insertBefore(a, e)
+        }
+    })(document, window.mixpanel || []);
+    mixpanel.init("b58ecc35372bb29587676435f0342c9a");
+    </script>
+    <!-- end Mixpanel -->
+    <title>Wibe, Get Information Deeply</title>
+    <meta name="keywords" content="Google, Google America, Google India, Google US, Google Australia, Flipkart, Amazon, Ebay, Wibe,Wikipedia,YouTube, LetsWibe,Wiki,wibe,wiki,letswibe,Youtube,wibing,vibe,vibing,wikitube,consolidation,yibe,Yibe,vibing,yibing,wibbing">
+    <meta name="description" content="Wibe integrates YouTube videos on Google, Flipkart, Amazon and Wikipedia thus increasing the Interest Quotient of its Content. So LetsWibe to have a better knowledge enriched Wikipedia.">
+    <link rel="shortcut icon" href={% static "images/favicon.ico" %} />
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!-- 1. Load webcomponents.js for polyfill support. -->
+    <script src={% static "bower_components/webcomponentsjs/webcomponents.min.js" %}></script>
+    <!-- 2. Load the component using an HTML Import -->
+    <link rel="import" href={% static "bower_components/font-roboto/roboto.html" %}>
+    <link rel="import" href={% static "bower_components/core-header-panel/core-header-panel.html" %}>
+    <link rel="import" href={% static "bower_components/core-image/core-image.html" %}>
+    <link rel="import" href={% static "bower_components/core-icon-button/core-icon-button.html" %}>
+    <link rel="import" href={% static "bower_components/core-icon/core-icon.html" %}>
+    <link rel="import" href={% static "bower_components/core-field/core-field.html" %}>
+    <link rel="import" href={% static "bower_components/paper-button/paper-button.html" %}>
+    <link rel="import" href={% static "bower_components/paper-fab/paper-fab.html" %} media='handheld'>
+    <link rel="import" href={% static "bower_components/core-drawer-panel/core-drawer-panel.html" %}>
+    <link rel="import" href={% static "bower_components/paper-toast/paper-toast.html" %}>
+    <link rel="import" href={% static "bower_components/paper-dialog/paper-dialog.html" %}>
+
+    <!-- Mobile related files -->
+    <link rel="import" href={% static "bower_components/core-icons/communication-icons.html" %} media='handheld'>
+    <link rel="import" href={% static "bower_components/paper-shadow/paper-shadow.html" %} media='handheld'>
+
+
+    <!-- <link rel="stylesheet" type="text/css" href={% static "css/tipuedrop.css" %}> -->
+    <link rel="stylesheet" type="text/css" href={% static "css/style.css" %}>
+
+    <!-- Mobile CSS -->
+    <link rel="stylesheet" type="text/css" href={% static "css/style-mobile.css" %} media="screen and (max-width:640px)">
+
+    <!-- Chrome Extension Link -->
+    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/gdjelmgojohiflkbmjgefmnkhlonkkik" />
+</head>
+
+<body unresolved>
+    <core-drawer-panel responsiveWidth='9999px' disableSwipe disableEdgeSwipe>
+        <div drawer></div>
+        <div main>
+            <core-header-panel id="front-header">
+                <div id="black-strip"></div>
+                <div id="mash"></div>
+                <div id='panel' horizontal layout justified relative>
+                    <a href='/'>
+                        <core-image class='logo' src={% static "images/wibe-logo-white.png" %} sizing="contain"></core-image>
+                    </a>
+
+                    <div id='right-box' horizontal layout center justified relative>
+                        <core-field id='user-subs'>
+                            <input id='inp-email-id' type="email" placeholder="Enter Email for Updates" flex>
+                            <paper-button id='subscribe-but' raised onclick="saveMail()">
+                                <div>Subscribe</div>
+                            </paper-button>
+                        </core-field>
+                        <paper-fab id='mob-subs' icon="communication:email" onclick='document.querySelector("#mob-subs-box").toggle()' mini></paper-fab>
+
+                        <paper-dialog id='mob-subs-box' heading='Stay Updated' transition='core-transition-center' backdrop>
+                            <input id='email-inp-box' placeholder="Enter Email for Updates" flex>
+                            <paper-button raised onclick="document.querySelector('#subscribed-msg').show()">
+                                <div>Subscribe</div>
+                            </paper-button>
+                        </paper-dialog>
+                        <paper-toast id='subscribed-msg' text="You have been subscribed to Wibe!"></paper-toast>
+                        <paper-toast id='failed-msg' text="Invalid Email address!"></paper-toast>
+                    </div>
+                </div>
+                <div id="head" horizontal layout center-justified relative>EXPLORE DEEPLY</div>
+                <div id="sub-head" horizontal layout center-justified relative>Gain Information from Videos to Make Future</div>
+                <div id='sbox' vertical layout justified fit>
+                    <core-field id='main-search-box' relative>
+                        <input type="text" id="tipue_drop_input" placeholder="What do you want to know?" autocomplete="off">
+                        <div id="tipue_drop_content"></div>
+                        <core-icon icon="search" id='sicon' onclick="srchBox()" right></core-icon>
+                    </core-field>
+                    <div id='rec-sea'>Trending Topics</div>
+                    <div class='hash-tags' itemscope itemtype="http://schema.org/CreativeWork" horizontal layout justified>
+                        <a href="/wibe/Valentine's-Day/" itemprop="url" id='pages-link'>
+                            <div id='hash1' class="hash" itemprop="headline">Valentine's-Day</div>
+                        </a>
+                        <a href='/wibe/2015-Cricket-World-Cup/' itemprop="url" id='pages-link'>
+                            <div id='hash2' class="hash" itemprop="headline">World-Cup</div>
+                        </a>
+                        <a href='/wibe/Laura-Ingalls-Wilder/' itemprop="url" id='pages-link'>
+                            <div id='hash3' class="hash" itemprop="headline">Laura-Ingalls-Wilder</div>
+                        </a>
+                        <a href='/wibe/Aam-Aadmi-Party/' itemprop="url" id='pages-link'>
+                            <div id='hash4' class="hash" itemprop="headline">AAP</div>
+                        </a>
+                    </div>
+
+                </div>
+                <div id='trending-topics' horizontal layout justified>
+                    <paper-shadow id='tr-box-1' z=5 itemscope itemtype="http://schema.org/CreativeWork">
+                        <a href="/wibe/Valentine's-Day/" itemprop="url">
+                            <div id='box-1' class="box" vertical layout justified>
+                                <div class='pg-img'>
+                                    <core-image class='img' itemprop="thumbnailUrl" src='http://cchunterbooks.com/blog/wp-content/uploads/2014/02/valentines_day_card.jpg' sizing="cover"></core-image>
+                                </div>
+                                <div class='pg-title' itemprop="headline"> V Day</div>
+                            </div>
+                        </a>
+                    </paper-shadow>
+                    <paper-shadow id='tr-box-2' z=5 itemscope itemtype="http://schema.org/CreativeWork">
+                        <a href='/wibe/2015-Cricket-World-Cup/' itemprop="url">
+                            <div id='box-2' class="box" vertical layout justified>
+                                <div class='pg-img'>
+                                    <core-image class='img' itemprop="thumbnailUrl" src='http://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Aam_Aadmi_Party_logo.svg/200px-Aam_Aadmi_Party_logo.svg.png' sizing="contain"></core-image>
+                                </div>
+                                <div class='pg-title' itemprop="headline"> AAP</div>
+                            </div>
+                        </a>
+                    </paper-shadow>
+                    <paper-shadow id='tr-box-3' z=5 itemscope itemtype="http://schema.org/CreativeWork">
+                        <a href='/wibe/Laura-Ingalls-Wilder/' itemprop="url">
+                            <div id='box-3' class="box" vertical layout justified>
+                                <div class='pg-img'>
+                                    <core-image class='img' itemprop="thumbnailUrl" src='http://upload.wikimedia.org/wikipedia/en/thumb/d/d2/2015_Cricket_World_Cup_Logo.svg/162px-2015_Cricket_World_Cup_Logo.svg.png' sizing="cover"></core-image>
+                                </div>
+                                <div class='pg-title' itemprop="headline"> World Cup</div>
+                            </div>
+                        </a>
+                    </paper-shadow>
+                    <paper-shadow id='tr-box-4' z=5 itemscope itemtype="http://schema.org/CreativeWork">
+                        <a href='/wibe/Aam-Aadmi-Party/' itemprop="url">
+                            <div id='box-4' class="box" vertical layout justified>
+                                <div class='pg-img'>
+                                    <core-image class='img' itemprop="thumbnailUrl" src='http://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Laura_Ingalls_Wilder.jpg/158px-Laura_Ingalls_Wilder.jpg' sizing="cover"></core-image>
+                                </div>
+                                <div class='pg-title' itemprop="headline"> Laura Wilder</div>
+                            </div>
+                        </a>
+                    </paper-shadow>
+
+                </div>
+                <div class="footer" horizontal layout center justified>
+
+                    <div id='less-imp' horizontal layout justified>
+                        <div id='copyright'> &copy; 2014 letswibe.com</div>
+                        <div id='tou'>Terms of Use</div>
+                        <div id='privacy'>Privacy Policy</div>
+                    </div>
+
+                    <div onclick="installExtension();">
+                        <paper-button id='install-but' raised> Install Wibe Extension</paper-button>
+                    </div>
+
+                    <div id='imp' horizontal layout justified>
+                        <div id='aboutus' onclick='document.querySelector("#about-us-box").toggle()'>About Us</div>
+                        <paper-dialog id='about-us-box' class='footer-boxes' itemscope itemtype="http://schema.org/CreativeWork" heading='Who are we?' transition='core-transition-center' backdrop>
+                            <h3 itemprop="text">
+                                We are a team of full newbies and emotional fools. We were always focused to solve our problems during college which ignited the work on <span itemprop="author">Wibe</span>. <span itemprop="author">Wibe</span> members are fully inexperienced and don't have great background in good companies but they have 1 thing which is found in very few ones that is the 'feel' in their work and idea. It keep every Wiber to work on their lovely Wibe whole day without food and sleep too.
+                                <br>
+                                <br> <span itemprop="editor">Wibers</span> are but also great emotional fools as they work by heart and goes with their gut feelings. They also waste their most time in discussing GF's issue :D.
+                                <br>
+                                <br> <span itemprop="author">Wibe</span> is currently the part of <span itemprop="award">TLabs</span>.
+                            </h3>
+                        </paper-dialog>
+                        <div id='contactus' class='footer-boxes' onclick='document.querySelector("#contact-us-box").toggle()'>Contact Us</div>
+                        <paper-dialog id='contact-us-box' heading='How to Reach Us?' transition='core-transition-center' backdrop>
+                            <div itemscope itemtype="http://schema.org/PostalAddress">
+                                <h3>Office: </h3> <span itemprop="streetAddress">T-Labs, FC-6, Times of India Building, First floor</span>, <span itemprop="addressLocality">Film city</span>, <span itemprop="addressRegion">Noida Sector 16A </span>
+                                <br>
+                                <br>
+                                <h3>Email: </h3> <span itemprop="email">contact@letswibe.com</span>
+                                <h3>Ph. No.: </h3> <span itemprop="telephone">+91 8447136882</span>
+                            </div>
+                        </paper-dialog>
+
+                        <!-- <a href='/blog/'>
+    <div id='blog'>Blog</div>
+</a>
+ -->
+                        <div id='whywibe' class='footer-boxes' onclick='document.querySelector("#why-wibe-box").toggle()'>Why Wibe</div>
+                        <paper-dialog id='why-wibe-box' itemscope itemtype="http://schema.org/CreativeWork" heading='Why Wibers do what they are doing?' transition='core-transition-center' backdrop>
+                            <h3 itemprop="text">
+                                <span itemprop="editor">Wibers</span> always believe in just one thing and that is "Just Do What You Love To DO". We all work on whatever thing we enjoy working on, which makes us super happy while we work.
+                                <br>
+                                <br> <span itemprop="editor">Wibers</span> left behind everything (Good Job Offers, Easy Life, ...) for living this awesome life of happiness by doing what they enjoy doing. <span itemprop="editor">Wibers</span> are seriously motivated by quote “Dreams are not those which comes while we are sleeping, but dreams are those which don't let you sleep", which keeps them awake whole night to make their dream come into reality.
+                                <br>
+                                <br> <span itemprop="editor">Wibers</span> always use to have a problem that they were unable to gain information by simply searching anything on google and have to waste a lot of time on reading top 5-6 links that come from Google. So they thought to invent a place where users can get the best information they are required to know about everything they want to know about, be it any place, person, movies, etc.
+                            </h3>
+                        </paper-dialog>
+                        <a href='/pages' id='pages-link'>
+                            <div id='pages'>Pages</div>
+                        </a>
+                    </div>
+                </div>
+            </core-header-panel>
+        </div>
+    </core-drawer-panel>
+
+    <script src={% static "js/jquery.min.js" %}></script>
+    <script src={% static "js/main_page.js" %}></script>
+    <!-- <script src={% static "js/tipuedrop.js" %}></script> -->
+</body>
+
+</html>
