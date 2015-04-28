@@ -31,7 +31,7 @@ APEND_SLASH = False
 
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(BASE_DIR, "..", "static", "www")
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
